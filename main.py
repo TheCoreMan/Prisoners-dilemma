@@ -8,15 +8,21 @@ first_turn = True
 
 
 def player_a_strategy():
-    return 0
+    return 1
 
 
 def player_b_strategy():
     global first_turn
-    if first_turn:
-        return 1
-    else:
-        return 0
+    if player_a_strategy() == 1:
+        if first_turn:
+            return 0
+        else:
+            return 1
+    if player_b_strategy() == 0 and first_turn:
+        if first_turn:
+            return 0
+        else:
+            return 1
 
 
 def result(res):
