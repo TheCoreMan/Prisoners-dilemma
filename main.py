@@ -2,16 +2,23 @@
 print("Start.")
 
 
+# CR: Lack of documentation.
 class Player:
+    # CR: Lack of documentation.
+    # CR: strategy should be a function argument, so it can be complex.
+    # CR: Code design - Player should have access to some class/interface which give data about the other player's
+    #                   decisions and the results so far, so it can use them in his strategy.
     def __init__(self, strat):
         self.years = 0
         self.strategy = strat
 
 P1 = Player(1)
 P2 = Player(0)
+# CR: Unused.
 choices = ["Keep quiet", "Rat out"]
 
 
+# CR: Commented-out code.
 # def player_a_strategy():
 #     return 1
 #
@@ -30,14 +37,18 @@ choices = ["Keep quiet", "Rat out"]
 #             return 1
 
 
+# CR: Bad design... This function call shouldn't assume the name of the player classes, it needs an arranged interface
+#     to get to the players.
 def result(res):
     if res == "A":
         print("Player A won!")
         P2.years += 3
+        # CR: Commented-out code.
         # P2.strategy = 1
     if res == "B":
         print("Player B won!")
         P1.years += 3
+        # CR: Commented-out code.
         # P1.strategy = 1
     if res == "AB":
         print("Both players win :)")
