@@ -3,18 +3,30 @@ print("Start.")
 
 choices = ["Keep quiet", "Rat out"]
 
-player_a_choice = int(input("Enter choice for A [0, 1] >"))
-player_b_choice = int(input("Enter choice for B [0, 1] >"))
 
-if player_a_choice == 0:
-    if player_b_choice == 0:
-        print("Both players win :)")
+def player_a_strategy():
+    return 1
+
+
+def player_b_strategy():
+    return 0
+
+
+def start_game(player_a_strategy_arg, player_b_strategy_arg):
+    player_a_choice = player_a_strategy_arg()
+    player_b_choice = player_b_strategy_arg()
+
+    if player_a_choice == 0:
+        if player_b_choice == 0:
+            print("Both players win :)")
+        else:
+            print("Player B won!")
     else:
-        print("Player B won!")
-else:
-    if player_b_choice == 0:
-        print("Player A won!")
-    else:
-        print("Both players lose :(")
+        if player_b_choice == 0:
+            print("Player A won!")
+        else:
+            print("Both players lose :(")
+
+start_game(player_a_strategy, player_b_strategy)
 
 print("Done.")
