@@ -4,13 +4,20 @@ print("Start.")
 choices = ["Keep quiet", "Rat out"]
 countA = 0
 countB = 0
+first_turn = True
+
 
 def player_a_strategy():
-    return 1
+    return 0
 
 
 def player_b_strategy():
-    return 0
+    global first_turn
+    if first_turn:
+        return 1
+    else:
+        return 0
+
 
 def result(res):
     global countA
@@ -30,10 +37,12 @@ def result(res):
         countA += 2
         countB += 2
 
+
 def start_game(player_a_strategy_arg, player_b_strategy_arg):
-    player_a_choice = player_a_strategy_arg()
-    player_b_choice = player_b_strategy_arg()
+    global first_turn
     for x in range(1, 1001):
+        player_a_choice = player_a_strategy_arg()
+        player_b_choice = player_b_strategy_arg()
         if player_a_choice == 0:
             if player_b_choice == 0:
                 result("AB")
@@ -45,8 +54,10 @@ def start_game(player_a_strategy_arg, player_b_strategy_arg):
             else:
                 result("0")
         x += 1
+        first_turn = False
     print("Number of years in prison for prisoner A: " + str(countA))
     print("Number of years in prison for prisoner B: " + str(countB))
+
 
 start_game(player_a_strategy, player_b_strategy)
 print("Done.")
