@@ -33,17 +33,18 @@ def result(res):
 def start_game(player_a_strategy_arg, player_b_strategy_arg):
     player_a_choice = player_a_strategy_arg()
     player_b_choice = player_b_strategy_arg()
-
-    if player_a_choice == 0:
-        if player_b_choice == 0:
-            result("AB")
+    for x in range(1, 1001):
+        if player_a_choice == 0:
+            if player_b_choice == 0:
+                result("AB")
+            else:
+                result("B")
         else:
-            result("B")
-    else:
-        if player_b_choice == 0:
-            result("A")
-        else:
-            result("0")
+            if player_b_choice == 0:
+                result("A")
+            else:
+                result("0")
+        x += 1
     print("Number of years in prison for prisoner A: " + str(countA))
     print("Number of years in prison for prisoner B: " + str(countB))
 
