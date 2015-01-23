@@ -1,0 +1,41 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'prisoner/style.css' %}" />
+
+<div id="headerwrapper">
+    <div id="header">
+        <h1>{{ text }}</h1>
+        <div id="logo"></div>
+    </div>
+</div>
+<div id="game">
+    <div id="game_form">
+        <form action="" method="post" class="dark-matter">
+            <h1>
+                Prisoner #1 strategy
+                <span>Please enter your prisoner's strategy in Python.</span>
+            </h1>
+            <p>
+                <label>
+                    <span>Prisoner Name :</span>
+                    <input id="name" type="text" name="name" placeholder="Prisoner #1">
+                </label>
+                <label>
+                    <span>
+                        <p>
+                            These are the instructions on how to fill the strategy.
+                        </p>
+                    </span>
+                </label>
+                <label>
+                    <span>Strategy :</span>
+                    <textarea id="strategy" name="strategy" placeholder="The prisoner's strategy"></textarea>
+                </label>
+                <label>
+                    <span>&nbsp;</span>
+                    <input type="button" class="button" value="Send">
+                </label>
+            </p>
+        </form>
+    </div>
+</div>
