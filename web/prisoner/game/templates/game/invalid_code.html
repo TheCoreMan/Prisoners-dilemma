@@ -1,0 +1,26 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'prisoner/style.css' %}" />
+
+<div id="headerwrapper">
+    <div id="header">
+        <h1>Invalid code!</h1>
+        <div id="logo"></div>
+    </div>
+</div>
+<div id="results">
+    <label>
+        <span>Name : {{ name }}</span>
+    </label>
+    <label>
+        <span>
+            <p>
+                Invalid code...
+            </p>
+            <textarea>
+                {{ strategy_text }}
+            </textarea>
+        </span>
+        <a href="{% url 'game:index' %}">Back to game</a>
+    </label>
+</div>
