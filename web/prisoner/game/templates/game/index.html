@@ -10,7 +10,8 @@
 </div>
 <div id="game">
     <div id="game_form">
-        <form action="" method="post" class="dark-matter">
+        <form action="{% url 'game:results' %}" method="post" class="dark-matter">
+            {% csrf_token %}
             <h1>
                 Prisoner #1 strategy
                 <span>Please enter your prisoner's strategy in Python.</span>
@@ -33,7 +34,7 @@
                 </label>
                 <label>
                     <span>&nbsp;</span>
-                    <input type="button" class="button" value="Send">
+                    <input type="submit" class="button" value="Send">
                 </label>
             </p>
         </form>
