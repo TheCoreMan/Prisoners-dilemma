@@ -1,0 +1,47 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'prisoner/style.css' %}" />
+
+<!-- The page header -->
+<div id="headerwrapper">
+    <div id="header">
+        <h1>{{ title }}</h1>
+        <div id="logo"></div>
+    </div>
+</div>
+
+<!--  -->
+<div id="game">
+    <div id="game_form">
+        <!--<form {% if first_prisoner %}action="{% url 'game:second_prisoner' %}"{% else %}"{% url 'game:results' %}"{% endif %} method="post" class="dark-matter">-->
+        "pay_forms/"|add:pay_gw.name|add:".html"
+        <form action="{% url 'game:"|add:dest_page|add:"'" %}" method="post" class="dark-matter">
+            {% csrf_token %}
+                <h1>
+                    Prisoner #{{ prisoner_number }}
+                    <span>Please enter your prisoner's strategy in Python.</span>
+                </h1>
+                <p>
+                    <label>
+                        <span>Name</span>
+                        <input id="name" type="text" name="name" placeholder="Prisoner #{{ prisoner_number }}" required autofocus="">
+                    </label>
+                    <label>
+                        <span>
+                            <p>
+                                These are the instructions on how to fill the strategy.
+                            </p>
+                        </span>
+                    </label>
+                    <label>
+                        <span>Strategy</span>
+                        <textarea id="strategy" name="strategy" placeholder="The prisoner's strategy..." required></textarea>
+                    </label>
+                </p>
+                <label>
+                    <span>&nbsp;</span>
+                    <input type="submit" class="button" value="Send">
+                </label>
+        </form>
+    </div>
+</div>

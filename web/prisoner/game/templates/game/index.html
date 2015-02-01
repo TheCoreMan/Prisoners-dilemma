@@ -2,41 +2,21 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'prisoner/style.css' %}" />
 
+<!-- The page header -->
 <div id="headerwrapper">
     <div id="header">
-        <h1>{{ text }}</h1>
+        <h1>{{ title }}</h1>
         <div id="logo"></div>
     </div>
 </div>
+
+<!--  -->
 <div id="game">
-    <div id="game_form">
-        <form action="{% url 'game:results' %}" method="post" class="dark-matter">
-            {% csrf_token %}
-            <h1>
-                Prisoner #1 strategy
-                <span>Please enter your prisoner's strategy in Python.</span>
-            </h1>
-            <p>
-                <label>
-                    <span>Name</span>
-                    <input id="name" type="text" name="name" placeholder="Prisoner #1" required autofocus="">
-                </label>
-                <label>
-                    <span>
-                        <p>
-                            These are the instructions on how to fill the strategy.
-                        </p>
-                    </span>
-                </label>
-                <label>
-                    <span>Strategy</span>
-                    <textarea id="strategy" name="strategy" placeholder="The prisoner's strategy..." required></textarea>
-                </label>
-                <label>
-                    <span>&nbsp;</span>
-                    <input type="submit" class="button" value="Send">
-                </label>
-            </p>
-        </form>
-    </div>
+    <form action="{% url 'game:first_prisoner' %}" method="post" class="dark-matter">
+        {% csrf_token %}
+        <label>
+            <span>&nbsp;</span>
+            <input type="submit" class="button" value="Start game">
+        </label>
+    </form>
 </div>
