@@ -10,12 +10,12 @@
     </div>
 </div>
 
-<!--  -->
+<!-- The game form itself  -->
 <div id="game">
     <div id="game_form">
-        <!--<form {% if first_prisoner %}action="{% url 'game:second_prisoner' %}"{% else %}"{% url 'game:results' %}"{% endif %} method="post" class="dark-matter">-->
-        "pay_forms/"|add:pay_gw.name|add:".html"
-        <form action="{% url 'game:"|add:dest_page|add:"'" %}" method="post" class="dark-matter">
+        {% with "game:"|add:dest_page as dest_page %}
+        <form action="{% url dest_page %}" method="post" class="dark-matter">
+        {% endwith %}
             {% csrf_token %}
                 <h1>
                     Prisoner #{{ prisoner_number }}
