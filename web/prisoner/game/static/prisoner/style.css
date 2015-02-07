@@ -48,6 +48,20 @@ body {
     background-size: cover;
 }
 
+#menu {
+    margin-left: auto;
+    margin-right: auto;
+    background: #698694;
+    padding: 20px 30px 20px 30px;
+    border: none;
+    border-radius: 5px;
+}
+
+#menu-buttons {
+    text-align: center;
+    position: relative;
+}
+
 /* #### Dark Matter #### */
 .dark-matter {
     margin-left: auto;
