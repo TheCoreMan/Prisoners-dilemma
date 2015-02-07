@@ -52,3 +52,7 @@ def results(request):
 
     context = {'name': "the prisoner names", 'strategy_text': "the prisoner strats, played out."}
     return render(request, 'game/results.html', context)
+
+
+def help_page(request):
+    return first_prisoner(request)

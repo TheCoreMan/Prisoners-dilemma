@@ -1,22 +1,26 @@
 {% load staticfiles %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'prisoner/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'prisoner/component.css' %}" />
 
 <!-- The page header -->
 <div id="headerwrapper">
     <div id="header">
         <h1>{{ title }}</h1>
-        <div id="logo"></div>
     </div>
 </div>
 
 <!--  -->
-<div id="game">
-    <form action="{% url 'game:first_prisoner' %}" method="post" class="dark-matter">
-        {% csrf_token %}
-        <label>
-            <span>&nbsp;</span>
-            <input type="submit" class="button" value="Start game">
-        </label>
-    </form>
+<div id="menu">
+    <div id="menu-buttons">
+        <button class="btn btn-5 btn-5a icon-arrow-right" onclick="window.location.href='{% url 'game:first_prisoner' %}'">
+            <span>Play</span>
+        </button>
+        <button class="btn btn-5 btn-5a icon-star-2" onclick="window.location.href='{% url 'game:help_page' %}'">
+            <span>Help</span>
+        </button>
+        <button class="btn btn-5 btn-5a icon-cog" onclick="window.location.href='{% url 'admin:index' %}'">
+            <span>Admin</span>
+        </button>
+    </div>
 </div>
