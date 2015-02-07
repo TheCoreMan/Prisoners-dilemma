@@ -55,4 +55,5 @@ def results(request):
 
 
 def help_page(request):
-    return first_prisoner(request)
+    context = {}
+    return render(request, 'game/help_page.html', context)
