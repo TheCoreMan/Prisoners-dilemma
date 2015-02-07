@@ -1,29 +1,15 @@
 from django.shortcuts import render
 from .game_engine.prisoner import Prisoner
+from .game_engine.game import Game
 
 
-def save_first_prisoner(prisoner):
-    print("*** first prisoner \n" + repr(prisoner))
+my_game = Game()
 
 
-def save_second_prisoner(prisoner):
-    print("*** second prisoner \n" + repr(prisoner))
-
-
-def process_first_prisoner(request):
+def process_prisoner(request):
     try:
-        first_prisoner = Prisoner(name=request.POST['name'], strategy=request.POST['strategy'])
-        save_first_prisoner(first_prisoner)
-
-    except AssertionError as e:  # means bad strategy code
-        context = {'name': request.POST['name'], 'strategy_text': request.POST['strategy']}
-        return render(request, 'game/invalid_code.html', context)
-
-
-def process_second_prisoner(request):
-    try:
-        second_prisoner = Prisoner(name=request.POST['name'], strategy=request.POST['strategy'])
-        save_second_prisoner(second_prisoner)
+        prisoner = Prisoner(name=request.POST['name'], strategy=request.POST['strategy'])
+        my_game.save_prisoner(prisoner)
 
     except AssertionError as e:  # means bad strategy code
         context = {'name': request.POST['name'], 'strategy_text': request.POST['strategy']}
@@ -41,16 +27,19 @@ def first_prisoner(request):
 
 
 def second_prisoner(request):
-    process_first_prisoner(request)
+    process_prisoner(request)
 
     context = {'title': "Welcome to the Prisoner's Dilemma...", 'prisoner_number': "2", "dest_page": "results"}
     return render(request, 'game/prisoner.html', context)
 
 
 def results(request):
-    process_second_prisoner(request)
+    process_prisoner(request)
 
-    context = {'name': "the prisoner names", 'strategy_text': "the prisoner strats, played out."}
+    first_prisoner_object = my_game.get_prisoner(0)
+
+    context = {'name': first_prisoner_object.name,
+               'strategy_text': "the prisoner strats, played out."}
     return render(request, 'game/results.html', context)
 
 

@@ -12,8 +12,8 @@ def is_valid_python(code):
 class Prisoner(object):
     def __init__(self, name, strategy):
         self.name = name
-        self._strategy_text = strategy
-        assert is_valid_python(self._strategy_text), "Syntax error in strategy."
+        self.strategy_text = strategy
+        assert is_valid_python(self.strategy_text), "Syntax error in strategy."
 
     def __repr__(self):
-        return "Prisoner object. name: " + self.name + "\nstrategy: + " + self._strategy_text
+        return "Prisoner object. name: " + self.name + "\nstrategy: " + self.strategy_text
