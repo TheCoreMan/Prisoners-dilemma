@@ -1,16 +1,16 @@
-from .prisoner import Prisoner
+from ..models import Prisoner
 
 
 class Game(object):
-    def __init__(self):
-        self.first = True
-
     def save_prisoner(self, prisoner_to_save):
-        assert prisoner_to_save is Prisoner
-        if self.first:
-            self.first = False
-        else:
-            pass
+        assert type(prisoner_to_save) == Prisoner
+        prisoner_to_save.save()
 
     def get_prisoner(self, which):
-        pass
+        if type(which) == str:
+            return Prisoner.objects.get(name=which)
+        elif type(which) == int:
+            return Prisoner.objects.all()[which]
+
+    def end(self):
+        Prisoner.objects.all().delete()

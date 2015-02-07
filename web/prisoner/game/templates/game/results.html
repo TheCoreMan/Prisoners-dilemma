@@ -10,14 +10,8 @@
 </div>
 <div id="results">
     <label>
-        <span>Prisoner Name : {{ name }}</span>
+        <span>Prisoner #1: {{ name_1 }}</span>
+        <span>Prisoner #2: {{ name_2 }}</span>
     </label>
-    <label>
-        <span>
-            <p>
-                {{ strategy_text }}
-            </p>
-        </span>
-    </label>
-    <a href="{% url 'game:index' %}">Back to start?</a>
+    <a href="{% url 'game:index' %}">Back to main menu...</a>
 </div>
