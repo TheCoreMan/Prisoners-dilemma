@@ -1,16 +1,14 @@
 from django.shortcuts import render
 from .models import Prisoner
-from .game_engine.game import Game
-
-
-my_game = Game()
+from .game_engine.prisoner_DAL import save_prisoner, get_prisoner, end
+from .game_engine.game import play
 
 
 def process_prisoner(request):
     try:
         prisoner = Prisoner(name=request.POST['name'], strategy=request.POST['strategy'])
         print(repr(prisoner))
-        my_game.save_prisoner(prisoner)
+        save_prisoner(prisoner)
 
     except AssertionError as e:  # means bad strategy code
         context = {'name': request.POST['name'], 'strategy_text': request.POST['strategy']}
@@ -37,13 +35,16 @@ def second_prisoner(request):
 def results(request):
     process_prisoner(request)
 
-    first_prisoner_object = my_game.get_prisoner(0)
-    second_prisoner_object = my_game.get_prisoner(1)
+    first_prisoner_object = get_prisoner(0)
+    second_prisoner_object = get_prisoner(1)
+
+    results_text = play()
 
     context = {'name_1': first_prisoner_object.name,
-               'name_2': second_prisoner_object.name}
+               'name_2': second_prisoner_object.name,
+               'results_text': results_text}
 
-    my_game.end()
+    end()
     return render(request, 'game/results.html', context)
 
 

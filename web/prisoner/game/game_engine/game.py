@@ -1,16 +1,16 @@
-from ..models import Prisoner
+from .prisoner_DAL import get_prisoner
+from .strategy_creation import StrategyCreation
 
 
-class Game(object):
-    def save_prisoner(self, prisoner_to_save):
-        assert type(prisoner_to_save) == Prisoner
-        prisoner_to_save.save()
+def play():
+    first_prisoner_object = get_prisoner(0)
+    second_prisoner_object = get_prisoner(1)
 
-    def get_prisoner(self, which):
-        if type(which) == str:
-            return Prisoner.objects.get(name=which)
-        elif type(which) == int:
-            return Prisoner.objects.all()[which]
+    s = StrategyCreation()
+    s.get_strategy_function(first_prisoner_object.strategy, 1)
+    s.get_strategy_function(second_prisoner_object.strategy, 2)
 
-    def end(self):
-        Prisoner.objects.all().delete()
+    first_res = s.strategy_1()
+    second_res = s.strategy_2()
+
+    return "Strategy #1: " + first_prisoner_object.strategy + "\nStrategy #2: " + second_prisoner_object.strategy
