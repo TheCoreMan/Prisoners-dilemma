@@ -1,10 +1,32 @@
-class StrategyCreation(object):
-    def get_strategy_function(self, strategy_text, which):
-        strategy_function_name = "strategy_{}".format(repr(which))
+class StrategyManager(object):
+
+    CHOICES_LIST_ATTRIBUTE_FORMAT = "{}_choices"
+    STRATEGY_FUNCTION_NAME_FORMAT = "strategy_{}"
+
+    def __init__(self, first_prisoner_name, second_prisoner_name):
+        self.first_turn = True
+        setattr(self.__class__, self.CHOICES_LIST_ATTRIBUTE_FORMAT.format(first_prisoner_name), [])
+        setattr(self.__class__, self.CHOICES_LIST_ATTRIBUTE_FORMAT.format(second_prisoner_name), [])
+
+    def get_last_choice(self, who):
+        choices = getattr(self.__class__, self.CHOICES_LIST_ATTRIBUTE_FORMAT.format(who))
+        return choices[-1]
+
+    def add_choice(self, choice, who):
+        choices = getattr(self.__class__, self.CHOICES_LIST_ATTRIBUTE_FORMAT.format(who))
+        choices.append(choice)
+
+    def call_strategy(self, who):
+        strategy = getattr(self.__class__, self.STRATEGY_FUNCTION_NAME_FORMAT.format(who))
+        choice = strategy(self)
+        self.add_choice(choice, who)
+        return choice
+
+    def create_strategy_function(self, strategy_text, who):
+        strategy_function_name = self.STRATEGY_FUNCTION_NAME_FORMAT.format(who)
         strategy_function_code = """
 def {FUNCTION_NAME}(self):
-    {FUNCTION_CODE}
-        """.format(FUNCTION_NAME=strategy_function_name, FUNCTION_CODE=strategy_text)
+    {FUNCTION_CODE}""".format(FUNCTION_NAME=strategy_function_name, FUNCTION_CODE=strategy_text)
         add_dynamic_method_to_class(self.__class__, strategy_function_name, strategy_function_code)
 
 
