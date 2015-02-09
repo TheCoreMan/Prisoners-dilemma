@@ -10,12 +10,34 @@
     </div>
 </div>
 <div id="help" class="dark-matter">
-    <label>
-        <p>
-            This is the help text. bla....
-        </p>
+
         <button class="btn btn-4 btn-4b icon-arrow-left" onclick="window.location.href='{% url 'game:index' %}'">
             Back to main menu...
         </button>
-    </label>
+        <p>
+            <h1>What is the prisoner's dilemma?</h1>
+<mark>The prisoner's dilemma</mark> is a canonical example of a game analyzed in game theory that shows why two purely "rational" individuals might not cooperate, even if it appears that it is in their best interests to do so. It was originally framed by Merrill Flood and Melvin Dresher working at RAND in 1950. Albert W. Tucker formalized the game with prison sentence rewards and gave it the name "prisoner's dilemma" (Poundstone, 1992), presenting it as follows:<br><br>
+            <span>
+                Two members of a criminal gang are arrested and imprisoned. Each prisoner is in solitary confinement with no means of speaking to or exchanging messages with the other. The police admit they don't have enough evidence to convict the pair on the principal charge. They plan to sentence both to a year in prison on a lesser charge. Simultaneously, the police offer each prisoner a Faustian bargain. Each prisoner is given the opportunity either to betray the other, by testifying that the other committed the crime, or to cooperate with the other by remaining silent. Here's how it goes:<br>
+                <ul>
+                    <li>If A and B each betray the other, each of them serves 2 years in prison.</li>
+                    <li>If A betrays B but B remains silent, A will be set free and B will serve 3 years in prison (and vice versa)</li>
+                    <li>If A and B both remain silent, both of them will only serve 1 year in prison (on the lesser charge)</li>
+                </ul>
+                <br>
+            </span>
+It is implied that the prisoners will have no opportunity to reward or punish their partner other than the prison sentences they get, and that their decision will not affect their reputation in the future. Because betraying a partner offers a greater reward than cooperating with them, all purely rational self-interested prisoners would betray the other, and so the only possible outcome for two purely rational prisoners is for them to betray each other. The interesting part of this result is that pursuing individual reward logically leads both of the prisoners to betray, when they would get a better reward if they both cooperated. In reality, humans display a systematic bias towards cooperative behavior in this and similar games, much more so than predicted by simple models of "rational" self-interested action. A model based on a different kind of rationality, where people forecast how the game would be played if they formed coalitions and then they maximize their forecasts, has been shown to make better predictions of the rate of cooperation in this and similar games given only the payoffs of the game.<br><br>
+<b>There is also an extended "iterated" version of the game, where the classic game is played over and over between the same prisoners, and consequently, both prisoners continuously have an opportunity to penalize the other for previous decisions. If the number of times the game will be played is known to the players, then (by backward induction) two classically rational players will betray each other repeatedly, for the same reasons as the single shot variant. In an infinite or unknown length game there is no fixed optimum strategy, and Prisoner's Dilemma tournaments have been held to compete and test algorithms.</b><br><br>
+The prisoner's dilemma game can be used as a model for many real world situations involving cooperative behaviour. In casual usage, the label "prisoner's dilemma" may be applied to situations not strictly matching the formal criteria of the classic or iterative games: for instance, those in which two entities could gain important benefits from cooperating or suffer from the failure to do so, but find it merely difficult or expensive, not necessarily impossible, to coordinate their activities to achieve cooperation.<br><br>
+        </p>
+        <p>
+            <h1>How to play?</h1>
+            In order to play, you need to enter your prisoner's strategies in python. The game will be played X times (the iterated version of the game). <br>
+            Keeping quiet is <i>return 0</i> and betraying is <i>return 1</i>.<br>
+            <h2>Examples for strategies</h2>
+            <ul>
+                <li>always betray - <i>return 1</i></li>
+                <li>Non-nice tit-for-tat - will be <i>if self.first_turn: return 1; return self.get_last_choice("kevin")</i> (assuming the other player is kevin)</li>
+            </ul>
+        </p>
 </div>
