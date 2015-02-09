@@ -22,11 +22,23 @@ class StrategyManager(object):
         self.add_choice(choice, who)
         return choice
 
-    def create_strategy_function(self, strategy_text, who):
+    @staticmethod
+    def get_function_code(strategy_function_body, strategy_function_name):
+        strategy_function_code = """def {FUNCTION_NAME}(self):
+{FUNCTION_CODE}""".format(FUNCTION_NAME=strategy_function_name, FUNCTION_CODE=strategy_function_body)
+        strategy_function_code_lines = [line for line in strategy_function_code.splitlines(True)]
+
+        def tabify(line):
+            if not line.startswith("def"):
+                line = "    " + line
+            return line
+
+        strategy_function_code = ''.join([tabify(line) for line in strategy_function_code_lines])
+        return strategy_function_code
+
+    def create_strategy_function(self, strategy_function_body, who):
         strategy_function_name = self.STRATEGY_FUNCTION_NAME_FORMAT.format(who)
-        strategy_function_code = """
-def {FUNCTION_NAME}(self):
-    {FUNCTION_CODE}""".format(FUNCTION_NAME=strategy_function_name, FUNCTION_CODE=strategy_text)
+        strategy_function_code = StrategyManager.get_function_code(strategy_function_body, strategy_function_name)
         add_dynamic_method_to_class(self.__class__, strategy_function_name, strategy_function_code)
 
 

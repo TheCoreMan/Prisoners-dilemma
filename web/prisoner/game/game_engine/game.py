@@ -10,14 +10,14 @@ class PossibleChoices(object):
 def get_years_from_choices(first_choice, second_choice):
     if first_choice == PossibleChoices.KEEP_QUIET:
         if second_choice == PossibleChoices.KEEP_QUIET:
-            return 1, 1
+            return 1, 1  # Both keep quiet
         else:
-            return 3, 0
+            return 3, 0  # B rats out
     else:
         if second_choice == PossibleChoices.KEEP_QUIET:
-            return 0, 3
+            return 0, 3  # A rats out
         else:
-            return 2, 2
+            return 2, 2  # Both rat out
 
 
 def play_single_turn(first_prisoner, second_prisoner, strategy_manager):
