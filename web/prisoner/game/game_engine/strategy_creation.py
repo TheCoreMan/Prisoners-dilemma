@@ -5,18 +5,23 @@ class StrategyManager(object):
 
     def __init__(self, first_prisoner_name, second_prisoner_name):
         self.first_turn = True
+        first_prisoner_name = first_prisoner_name.lower()
+        second_prisoner_name = second_prisoner_name.lower()
         setattr(self.__class__, self.CHOICES_LIST_ATTRIBUTE_FORMAT.format(first_prisoner_name), [])
         setattr(self.__class__, self.CHOICES_LIST_ATTRIBUTE_FORMAT.format(second_prisoner_name), [])
 
     def get_last_choice(self, who):
+        who = who.lower()
         choices = getattr(self.__class__, self.CHOICES_LIST_ATTRIBUTE_FORMAT.format(who))
         return choices[-1]
 
     def add_choice(self, choice, who):
+        who = who.lower()
         choices = getattr(self.__class__, self.CHOICES_LIST_ATTRIBUTE_FORMAT.format(who))
         choices.append(choice)
 
     def call_strategy(self, who):
+        who = who.lower()
         strategy = getattr(self.__class__, self.STRATEGY_FUNCTION_NAME_FORMAT.format(who))
         choice = strategy(self)
         self.add_choice(choice, who)
@@ -37,6 +42,7 @@ class StrategyManager(object):
         return strategy_function_code
 
     def create_strategy_function(self, strategy_function_body, who):
+        who = who.lower()
         strategy_function_name = self.STRATEGY_FUNCTION_NAME_FORMAT.format(who)
         strategy_function_code = StrategyManager.get_function_code(strategy_function_body, strategy_function_name)
         add_dynamic_method_to_class(self.__class__, strategy_function_name, strategy_function_code)
