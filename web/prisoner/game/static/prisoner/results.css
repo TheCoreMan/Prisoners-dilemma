@@ -1,0 +1,159 @@
+.players {
+    float:center;
+    width: 100%;
+    border-radius: 10px;
+    align: center;
+
+    background:
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+    background-color: #131313;
+    background-size: 20px 20px;
+}
+
+.player {
+    border:3px solid;
+    border-radius: 10px;
+    padding: 20px 20px 20px 20px;
+    font-family: 'Libre Baskerville', sans-serif;
+    text-align: center;
+    width: 45%
+}
+    .player.h1 {
+        display: inline-block;
+        position: relative;
+    }
+    .player.h2 {
+        display: block;
+        margin: 0;
+    }
+
+#winner {
+    border: solid green;
+    float:left;
+}
+
+#loser {
+    border: solid red;
+    float:right;
+    align:right
+}
+
+
+#results {
+    width: 100%;
+    background-color: #667788;
+    margin: 6 auto;
+    top: 0;
+    left: 0;
+    text-align: center;
+    z-index: 10000;
+    position: relative;
+    border-radius: 10px;
+}
+
+
+/* show/hide */
+
+input#show1, input#hide1 {
+    display:none;
+}
+
+span#strategy1 {
+    display: block;
+    -webkit-transition: opacity 1s ease-out;
+    transition: opacity 1s ease-out;
+    opacity: 0;
+    height: 0;
+    font-size: 0;
+    overflow: hidden;
+    text-align: left;
+    float: left;
+}
+
+input#show1:checked ~ .show1:before {
+    content: ""
+}
+input#show1:checked ~ .hide1:before {
+    content: "hide"
+}
+
+input#hide1:checked ~ .hide1:before {
+    content: ""
+}
+input#hide1:checked ~ .show1:before {
+    content: "show"
+}
+input#show1:checked ~ span#strategy1 {
+    opacity: 1;
+    font-size: 100%;
+    height: auto;
+}
+input#hide1:checked ~ span#strategy1 {
+    display: block;
+    -webkit-transition: opacity 1s ease-out;
+    transition: opacity 1s ease-out;
+    opacity: 0;
+    height: 0;
+    font-size: 0;
+    overflow: hidden;
+}
+
+input#show2, input#hide2 {
+    display:none;
+}
+
+span#strategy2 {
+    display: block;
+    -webkit-transition: opacity 1s ease-out;
+    transition: opacity 1s ease-out;
+    opacity: 0;
+    height: 0;
+    font-size: 0;
+    overflow: hidden;
+    text-align: left;
+    float: left;
+}
+
+input#show2:checked ~ .show2:before {
+    content: ""
+}
+input#show2:checked ~ .hide2:before {
+    content: "hide"
+}
+
+input#hide2:checked ~ .hide2:before {
+    content: ""
+}
+input#hide2:checked ~ .show2:before {
+    content: "show"
+}
+input#show2:checked ~ span#strategy2 {
+    opacity: 1;
+    font-size: 100%;
+    height: auto;
+}
+input#hide2:checked ~ span#strategy2 {
+    display: block;
+    -webkit-transition: opacity 1s ease-out;
+    transition: opacity 1s ease-out;
+    opacity: 0;
+    height: 0;
+    font-size: 0;
+    overflow: hidden;
+}
+
+.box {
+    text-shadow:#fff 0px 1px 0, #000 0 -1px 0;
+    font-weight:bold; color:#808080;
+}
+
+.effect1{
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+	   -moz-box-shadow: 0 10px 6px -6px #777;
+	        box-shadow: 0 10px 6px -6px #777;
+}

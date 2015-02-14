@@ -42,12 +42,5 @@ def play():
     for i in range(0, 10):
         play_single_turn(first_prisoner_object, second_prisoner_object, s)
 
-    results_text = """
-    Strategy #1: {S1}
-    Strategy #2: {S2}
-    Years #1: {Y1}
-    Years #2: {Y2}
-    """.format(S1=first_prisoner_object.strategy, S2=second_prisoner_object.strategy,
-               Y1=first_prisoner_object.years, Y2=second_prisoner_object.years)
-
-    return results_text
+    first_prisoner_object.save()
+    second_prisoner_object.save()

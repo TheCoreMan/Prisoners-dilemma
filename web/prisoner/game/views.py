@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Prisoner
-from .game_engine.prisoner_DAL import save_prisoner, get_prisoner, end
+from .game_engine.prisoner_DAL import save_prisoner, get_prisoner, delete_players_from_db
 from .game_engine.game import play
 
 
@@ -32,19 +32,24 @@ def second_prisoner(request):
     return render(request, 'game/prisoner.html', context)
 
 
+def get_results_into_context():
+    first_prisoner_object = get_prisoner(0)
+    second_prisoner_object = get_prisoner(1)
+    context = {
+    'winner': first_prisoner_object if first_prisoner_object.years < second_prisoner_object.years else second_prisoner_object,
+    'loser': first_prisoner_object if first_prisoner_object.years > second_prisoner_object.years else second_prisoner_object}
+    return context
+
+
 def results(request):
     process_prisoner(request)
 
-    first_prisoner_object = get_prisoner(0)
-    second_prisoner_object = get_prisoner(1)
+    play()
 
-    results_text = play()
+    context = get_results_into_context()
 
-    context = {'name_1': first_prisoner_object.name,
-               'name_2': second_prisoner_object.name,
-               'results_text': results_text}
+    delete_players_from_db()
 
-    end()
     return render(request, 'game/results.html', context)
 
 

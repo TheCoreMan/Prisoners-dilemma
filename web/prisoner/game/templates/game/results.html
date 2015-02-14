@@ -1,6 +1,8 @@
 {% load staticfiles %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'prisoner/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'prisoner/results.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'prisoner/component.css' %}" />
 
 <div id="headerwrapper">
     <div id="header">
@@ -9,12 +11,37 @@
     </div>
 </div>
 <div id="results">
-    <label>
-        <span>Prisoner #1: {{ name_1 }}</span>
-        <span>Prisoner #2: {{ name_2 }}</span>
-    </label>
-    <p>
-        {{ results_text }}
-    </p>
-    <a href="{% url 'game:index' %}">Back to main menu...</a>
+    <div class="players">
+        <div id="winner" class="player box effect1">
+            <h1> {{ winner.name }} </h1>
+            <h3>Years: {{ winner.years }}</h3>
+
+            <input type="radio" id="show1" name="group1">
+            <input type="radio" id="hide1" name="group1" checked>
+            <label for="hide1" class="hide1"></label>
+            <label for="show1" class="show1"></label>
+            <span id="strategy1">
+                <pre>{{ winner.strategy }}</pre>
+            </span>
+
+            <!--<div class="strategy">Hover to see strategy...<div class="showme"></div></div>-->
+        </div>
+        <div id="loser" class="player box effect1">
+            <h1> {{ loser.name }} </h1>
+            <h3>Years: {{ loser.years }}</h3>
+
+            <input type="radio" id="show2" name="group2" />
+            <input type="radio" id="hide2" name="group2" checked />
+            <label for="hide2" class="hide2"></label>
+            <label for="show2" class="show2"></label>
+            <span id="strategy2">
+                <pre>{{ loser.strategy }}</pre>
+            </span>
+        </div>
+        <br style="clear:both;" />
+
+        <button class="btn btn-5 btn-5a icon-arrow-left" onclick="window.location.href='{% url 'game:index' %}'">
+            <span>Back to main menu?</span>
+        </button>
+    </div>
 </div>

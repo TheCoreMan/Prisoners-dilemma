@@ -13,5 +13,5 @@ def get_prisoner(which):
         return Prisoner.objects.all()[which]
 
 
-def end():
+def delete_players_from_db():
     Prisoner.objects.all().delete()

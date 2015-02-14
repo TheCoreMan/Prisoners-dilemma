@@ -680,6 +680,7 @@
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	backface-visibility: hidden;
+	border-radius: 10px;
 }
 
 .btn-5:active {
@@ -720,6 +721,8 @@
 	-moz-transform: translateY(300%);
 	-ms-transform: translateY(300%);
 	transform: translateY(300%);
+	border-radius: 10px;
+	border: 3px;
 }
 
 .btn-5a:before {
