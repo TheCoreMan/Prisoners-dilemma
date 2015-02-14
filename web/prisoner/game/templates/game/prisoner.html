@@ -27,11 +27,16 @@
                         <input id="name" type="text" name="name" placeholder="Prisoner #{{ prisoner_number }}" required autofocus="">
                     </label>
                     <label>
-                        <span>
-                            <p>
-                                These are the instructions on how to fill the strategy.
-                            </p>
-                        </span>
+The strategy should be Python code, which always returns 1 or 0. <b>If you return 0, you cooperate (keep quiet). If you return 1, you betray (rat out).</b>
+<br><br>
+Make sure your Python is valid - 4 spaces are indentation, etc. The code should be a function body, e.g. without the <i>def func():</i> line. The def will be added later.
+<br><br>
+You have access to the following information:
+                            <ul>
+                                <li><i>self.first_turn</i> - boolean value. tells you if it's the first turn of the game.</li>
+                                <li><i>self.get_last_choice(name)</i> - returns a number (0, 1). Enter the name of the a player to get his last choice.</li>
+                                <li><i>self.{NAME}_choices</i> - Python list, holds all choices of {NAME}.</li>
+                            </ul>
                     </label>
                     <label>
                         <span>Strategy</span>
