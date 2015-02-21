@@ -1,4 +1,3 @@
-from .prisoner_DAL import get_prisoner
 from .strategy_creation import StrategyManager
 
 
@@ -28,9 +27,8 @@ def play_single_turn(first_prisoner, second_prisoner, strategy_manager):
     second_prisoner.years += years_to_add_to_second
 
 
-def play():
-    first_prisoner_object = get_prisoner(0)
-    second_prisoner_object = get_prisoner(1)
+def play(game):
+    first_prisoner_object, second_prisoner_object = game.get_prisoners()
 
     s = StrategyManager(first_prisoner_object.name, second_prisoner_object.name)
     s.create_strategy_function(first_prisoner_object.strategy, first_prisoner_object.name)
