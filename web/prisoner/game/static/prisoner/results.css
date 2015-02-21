@@ -43,6 +43,17 @@
     align:right
 }
 
+#lefttie {
+    border: solid yellow;
+    float:left;
+}
+
+#righttie {
+    border: solid yellow;
+    float:right;
+    align:right
+}
+
 
 #results {
     width: 100%;

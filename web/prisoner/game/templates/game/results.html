@@ -12,7 +12,11 @@
 </div>
 <div id="results">
     <div class="players">
+        {% if not tie %}
         <div id="winner" class="player box effect1">
+        {% else %}
+        <div id="lefttie" class="player box effect1">
+        {% endif %}
             <h1> {{ winner.name }} </h1>
             <h3>Years: {{ winner.years }}</h3>
 
@@ -26,7 +30,11 @@
 
             <!--<div class="strategy">Hover to see strategy...<div class="showme"></div></div>-->
         </div>
+        {% if not tie %}
         <div id="loser" class="player box effect1">
+        {% else %}
+        <div id="righttie" class="player box effect1">
+        {% endif %}
             <h1> {{ loser.name }} </h1>
             <h3>Years: {{ loser.years }}</h3>
 

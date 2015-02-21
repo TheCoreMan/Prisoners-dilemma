@@ -5,14 +5,9 @@ from .game_engine.game import play
 
 
 def process_prisoner(request):
-    try:
-        prisoner = Prisoner(name=request.POST['name'], strategy=request.POST['strategy'])
-        print(repr(prisoner))
-        save_prisoner(prisoner)
-
-    except AssertionError as e:  # means bad strategy code
-        context = {'name': request.POST['name'], 'strategy_text': request.POST['strategy']}
-        return render(request, 'game/invalid_code.html', context)
+    prisoner = Prisoner(name=request.POST['name'], strategy=request.POST['strategy'])
+    print(repr(prisoner))
+    save_prisoner(prisoner)
 
 
 def index(request):
@@ -21,6 +16,7 @@ def index(request):
 
 
 def first_prisoner(request):
+
     context = {'title': "Welcome to the Prisoner's Dilemma...", 'prisoner_number': "1", "dest_page": "second_prisoner"}
     return render(request, 'game/prisoner.html', context)
 
@@ -35,16 +31,28 @@ def second_prisoner(request):
 def get_results_into_context():
     first_prisoner_object = get_prisoner(0)
     second_prisoner_object = get_prisoner(1)
-    context = {
-    'winner': first_prisoner_object if first_prisoner_object.years < second_prisoner_object.years else second_prisoner_object,
-    'loser': first_prisoner_object if first_prisoner_object.years > second_prisoner_object.years else second_prisoner_object}
+
+    context = {}
+    if first_prisoner_object.years != second_prisoner_object.years:
+        context = {
+            'winner':   first_prisoner_object if first_prisoner_object.years < second_prisoner_object.years else second_prisoner_object,
+            'loser':    first_prisoner_object if first_prisoner_object.years > second_prisoner_object.years else second_prisoner_object}
+    else:
+        context = {
+            'winner':   first_prisoner_object,
+            'loser':    second_prisoner_object,
+            'tie':      True}
     return context
 
 
 def results(request):
     process_prisoner(request)
 
-    play()
+    try:
+        play()
+    except:
+        delete_players_from_db()
+        raise
 
     context = get_results_into_context()
 
